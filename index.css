@@ -1,0 +1,194 @@
+/*
+ * Globals
+ */
+html {
+    height: 100%;
+    font-size: 14px;
+}
+
+body {
+    height: 100%;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+:root {
+    --jumbotron-padding-y: 3rem;
+}
+
+.jumbotron {
+    padding-top: var(--jumbotron-padding-y);
+    padding-bottom: var(--jumbotron-padding-y);
+    margin-bottom: 0;
+    background-color: #fff;
+}
+
+.jumbotron p:last-child {
+    margin-bottom: 0;
+}
+
+.jumbotron-heading {
+    font-weight: 300;
+}
+
+.jumbotron .container {
+    max-width: 40rem;
+}
+
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+.no-select {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+@-webkit-keyframes glowBlue {
+    0% {box-shadow: 0 .25rem 0.75rem #007bff; bottom: 0;}
+    50% {box-shadow: 0 .5rem 2rem #007bff; bottom: 1em;}
+    100% {box-shadow: 0 .25rem 0.75rem #007bff; bottom: 0;}
+}
+
+@keyframes glowBlue {
+    0% {box-shadow: 0 .25rem 0.75rem #007bff; bottom: 0;}
+    50% {box-shadow: 0 .5rem 2rem #007bff; bottom: 1em;}
+    100% {box-shadow: 0 .25rem 0.75rem #007bff; bottom: 0;}
+}
+
+@-webkit-keyframes glowPink {
+    0% {box-shadow: 0 .25rem 0.75rem #ff0040; bottom: 0;}
+    50% {box-shadow: 0 .5rem 2rem #ff0040; bottom: 1em;}
+    100% {box-shadow: 0 .25rem 0.75rem #ff0040; bottom: 0;}
+}
+
+@keyframes glowPink{
+    0% {box-shadow: 0 .25rem 0.75rem #ff0040; bottom: 0;}
+    50% {box-shadow: 0 .5rem 2rem #ff0040; bottom: 1em;}
+    100% {box-shadow: 0 .25rem 0.75rem #ff0040; bottom: 0;}
+}
+
+@-webkit-keyframes raiseCard {
+    from {bottom: 0px;}
+    to {bottom: 200px;}
+}
+
+@keyframes raiseCard {
+    from {bottom: 0px;}
+    to {bottom: 200px;}
+}
+
+/*
+ * Header
+ */
+#header {
+    color: white;
+    background-color: antiquewhite;
+}
+
+#header h4 {
+    height: 100%;
+}
+
+/*
+ * Main
+ */
+#card-container {
+    max-width: 540px;
+}
+
+#card-container .card {
+    min-width: 220px;
+}
+
+#card-container .card:hover {
+    cursor: pointer;
+}
+
+#card-container button:disabled {
+    cursor: pointer;
+}
+
+/*
+ * Boy card
+ */
+#boy-card {
+    border-color: dimgray;
+    background-color: aliceblue;
+    box-shadow: 0 .25rem 0.75rem #007bff;
+}
+
+#boy-card:hover {
+    -webkit-animation: glowBlue 1s infinite;
+    animation: glowBlue 1s infinite;
+}
+
+#boy-card .card-header {
+    border-bottom: none;
+    background-color: #8de2f4;
+}
+
+#boy-card .card-footer {
+    border-top: none;
+}
+
+#boy-card .card-footer .btn {
+    color: white;
+    background: #8de2f4 none;
+    border-color: #8de2f4;
+}
+
+/*
+ * Girl card
+ */
+#girl-card {
+    border-color: dimgray;
+    background-color: mistyrose;
+    box-shadow: 0 .25rem .75rem #ff0040;
+}
+
+#girl-card:hover {
+    -webkit-animation: glowPink 1s infinite;
+    animation: glowPink 1s infinite;
+}
+
+#girl-card .card-header {
+    border-bottom: none;
+    background-color: #ff517c;
+}
+
+#girl-card .card-footer {
+    border-top: none;
+}
+
+#girl-card .card-footer .btn {
+    color: white;
+    background: #ff517c none;
+    border-color: #ff517c;
+}
+
+/*
+ * Footer
+ */
+footer {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+footer p {
+    margin-bottom: .25rem;
+}
