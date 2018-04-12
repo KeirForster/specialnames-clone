@@ -1,0 +1,43 @@
+<!-- Selected Categories -->
+<div>
+    <h5 class="text-center no-select">Categories Selected:
+        <span class="text-white m-2 p-1 bg-info rounded" ng-repeat="catSel in selectedCategories">
+            <span>{{ catSel }}</span>
+            <img class="close-icon" src="app/assets/img/ic_close_white_24px.svg" ng-click="toggleSelCat(catSel)">
+        </span>
+    </h5>
+</div>
+
+<!-- Categories -->
+<div class="bg-info categories">
+    <div class="container">
+        <!-- Top row -->
+        <div class="row">
+            <div class="categoryCard col-3 col-sm-3 no-select" ng-repeat="category in catCtrl.catFirstHalf"
+                 ng-style="category.style">
+                <div class="cat-img-outer" ng-click="toggleCategory(category)"
+                     ng-mouseenter="toggleMouseEnter(category)" ng-mouseleave="toggleMouseLeave(category)">
+                    <img class="cat-img" ng-src="{{ category.imgSrc }}">
+                </div>
+                <h5 class="cat-desc">{{ category.name }}</h5>
+            </div>
+        </div>
+        <!-- Bottom row -->
+        <div class="row">
+            <div class="categoryCard col-3 col-sm-3 no-select" ng-repeat="category in catCtrl.catSecondHalf"
+                 ng-style="category.style">
+                <div class="cat-img-outer" ng-click="toggleCategory(category)"
+                     ng-mouseenter="toggleMouseEnter(category)" ng-mouseleave="toggleMouseLeave(category)">
+                    <img class="cat-img" ng-src="{{ category.imgSrc }}">
+                </div>
+                <h5 class="cat-desc">{{ category.name }}</h5>
+            </div>
+        </div>
+        <!-- Submit button -->
+        <div ng-class="submitStyle">
+            <div class="col-6 m-2 p-2 mx-auto">
+                <a role="button" href="#!/{{ catCtrl.gender }}/categories/submit" class="btn btn-outline-dark btn-lg btn-block">Submit</a>
+            </div>
+        </div>
+    </div>
+</div>

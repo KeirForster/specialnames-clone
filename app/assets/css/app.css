@@ -58,6 +58,14 @@ body {
     user-select: none;
 }
 
+.close-icon {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
 @-webkit-keyframes glowBlue {
     0% {box-shadow: 0 .25rem 0.75rem #007bff; bottom: 0;}
     50% {box-shadow: 0 .5rem 2rem #007bff; bottom: 1em;}
@@ -113,6 +121,7 @@ body {
 
 #card-container .card {
     min-width: 220px;
+    text-decoration: none;
 }
 
 #card-container .card:hover {
@@ -180,6 +189,59 @@ body {
     background: #ff517c none;
     border-color: #ff517c;
 }
+
+/*
+ * Categories
+ */
+name-categories .categories {
+    padding: 10px;
+}
+
+name-categories .container {
+    max-width: 70%;
+}
+
+name-categories .categoryCard {
+    margin: 0 auto;
+    margin-bottom: 50px;
+    max-width: 150px;
+    height: auto;
+    border-radius: 50%;
+    padding: 0;
+    text-align: center;
+    background-color: #fff;
+}
+
+name-categories .categoryCard .cat-img-outer {
+    width: 70%;
+    height: 70%;
+    margin:  15% auto;
+    cursor: pointer;
+}
+
+name-categories .categoryCard .cat-img {
+    width: 100%;
+    height: 100%;
+}
+
+name-categories .categoryCard .cat-desc {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    color: #fff;
+}
+
+/*
+ * Boys Categories
+ */
+
+/*
+ * Name list
+ */
+name-list .container.name-list {
+    max-width: 500px;
+}
+
 
 /*
  * Footer

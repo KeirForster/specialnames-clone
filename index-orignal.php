@@ -13,7 +13,7 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <!-- Custom styles for this template -->
-    <link href="index.css" rel="stylesheet">
+    <link href="app/assets/css/app.css" rel="stylesheet">
 </head>
 
 <body>
@@ -42,7 +42,7 @@
                                 <h4 class="my-0 font-weight-normal">Boy Names</h4>
                             </div>
                             <div class="card-body">
-                                <img class="card-img-top img-fluid" src="images/baby-boy.png" alt="Card image cap">
+                                <img class="card-img-top img-fluid" src="app/assets/img/baby-boy.png" alt="Card image cap">
                             </div>
                             <div class="card-footer bg-transparent">
                                 <button type="button" class="btn btn-lg btn-block" disabled="">Search</button>
@@ -55,7 +55,7 @@
                                 <h4 class="my-0 font-weight-normal">Girl Names</h4>
                             </div>
                             <div class="card-body">
-                                <img class="card-img-top img-fluid" src="images/baby-girl.png" alt="Card image cap">
+                                <img class="card-img-top img-fluid" src="app/assets/img/baby-girl.png" alt="Card image cap">
                             </div>
                             <div class="card-footer bg-transparent">
                                 <button type="button" class="btn btn-lg btn-block" disabled="">Search</button>
@@ -72,9 +72,22 @@
         </div>
     </footer>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- my scripts -->
+    
+    <!-- main app -->
+    <script src="app/app.module.js"></script>
+
+    <!-- header navbar -->
+<!--    <script src="app/layout/app.module.js"></script>-->
+
+    <!-- content -->
+    <!--    <script src="app/app.module.js"></script>-->
+    
+    <!-- angular.js -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.min.js"></script>
+    
+    <!-- Bootstrap core JavaScript -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
             crossorigin="anonymous"></script>
