@@ -3,11 +3,17 @@
  */
 html {
     height: 100%;
+    margin: 0;
     font-size: 14px;
 }
 
 body {
     height: 100%;
+    margin: 0;
+    background-image: url("../img/baby_wild.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 @media (min-width: 768px) {
@@ -24,7 +30,7 @@ body {
     padding-top: var(--jumbotron-padding-y);
     padding-bottom: var(--jumbotron-padding-y);
     margin-bottom: 0;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 .jumbotron p:last-child {
@@ -66,50 +72,11 @@ body {
     display: none;
 }
 
-@-webkit-keyframes glowBlue {
-    0% {box-shadow: 0 .25rem 0.75rem #007bff; bottom: 0;}
-    50% {box-shadow: 0 .5rem 2rem #007bff; bottom: 1em;}
-    100% {box-shadow: 0 .25rem 0.75rem #007bff; bottom: 0;}
-}
-
-@keyframes glowBlue {
-    0% {box-shadow: 0 .25rem 0.75rem #007bff; bottom: 0;}
-    50% {box-shadow: 0 .5rem 2rem #007bff; bottom: 1em;}
-    100% {box-shadow: 0 .25rem 0.75rem #007bff; bottom: 0;}
-}
-
-@-webkit-keyframes glowPink {
-    0% {box-shadow: 0 .25rem 0.75rem #ff0040; bottom: 0;}
-    50% {box-shadow: 0 .5rem 2rem #ff0040; bottom: 1em;}
-    100% {box-shadow: 0 .25rem 0.75rem #ff0040; bottom: 0;}
-}
-
-@keyframes glowPink{
-    0% {box-shadow: 0 .25rem 0.75rem #ff0040; bottom: 0;}
-    50% {box-shadow: 0 .5rem 2rem #ff0040; bottom: 1em;}
-    100% {box-shadow: 0 .25rem 0.75rem #ff0040; bottom: 0;}
-}
-
-@-webkit-keyframes raiseCard {
-    from {bottom: 0px;}
-    to {bottom: 200px;}
-}
-
-@keyframes raiseCard {
-    from {bottom: 0px;}
-    to {bottom: 200px;}
-}
-
 /*
- * Header
+ * Top navbar
  */
-#header {
-    color: white;
-    background-color: antiquewhite;
-}
-
-#header h4 {
-    height: 100%;
+#top-navbar {
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 /*
@@ -122,10 +89,14 @@ body {
 #card-container .card {
     min-width: 220px;
     text-decoration: none;
+    transition: transform .2s;
 }
 
 #card-container .card:hover {
     cursor: pointer;
+    -ms-transform: scale(1.2); /* IE 9 */
+    -webkit-transform: scale(1.2); /* Safari 3-8 */
+    transform: scale(1.2);
 }
 
 #card-container button:disabled {
@@ -137,13 +108,8 @@ body {
  */
 #boy-card {
     border-color: dimgray;
-    background-color: aliceblue;
+    background-color: rgba(240, 248, 255, 0.9);
     box-shadow: 0 .25rem 0.75rem #007bff;
-}
-
-#boy-card:hover {
-    -webkit-animation: glowBlue 1s infinite;
-    animation: glowBlue 1s infinite;
 }
 
 #boy-card .card-header {
@@ -157,7 +123,7 @@ body {
 
 #boy-card .card-footer .btn {
     color: white;
-    background: #8de2f4 none;
+    background: #8de2f4;
     border-color: #8de2f4;
 }
 
@@ -166,13 +132,8 @@ body {
  */
 #girl-card {
     border-color: dimgray;
-    background-color: mistyrose;
+    background-color: rgba(255, 228, 225, 0.9);
     box-shadow: 0 .25rem .75rem #ff0040;
-}
-
-#girl-card:hover {
-    -webkit-animation: glowPink 1s infinite;
-    animation: glowPink 1s infinite;
 }
 
 #girl-card .card-header {
@@ -186,22 +147,39 @@ body {
 
 #girl-card .card-footer .btn {
     color: white;
-    background: #ff517c none;
+    background: #ff517c;
     border-color: #ff517c;
 }
 
 /*
- * Categories
+ * Name Categories
  */
-name-categories .categories {
+
+/*
+ * Selected Categories
+ */
+#categories-selected {
+    height: 5em;
+    /*opacity: 0.7;*/
+}
+
+#categories-selected .container,
+#categories-selected .row {
+    height: 100%;
+}
+
+/*
+ * Category content
+ */
+#categories {
     padding: 10px;
 }
 
-name-categories .container {
-    max-width: 70%;
+#categories .container {
+    max-width: 992px;
 }
 
-name-categories .categoryCard {
+#categories .categoryCard {
     margin: 0 auto;
     margin-bottom: 50px;
     max-width: 150px;
@@ -212,19 +190,19 @@ name-categories .categoryCard {
     background-color: #fff;
 }
 
-name-categories .categoryCard .cat-img-outer {
+#categories .categoryCard .cat-img-outer {
     width: 70%;
     height: 70%;
     margin:  15% auto;
     cursor: pointer;
 }
 
-name-categories .categoryCard .cat-img {
+#categories .categoryCard .cat-img {
     width: 100%;
     height: 100%;
 }
 
-name-categories .categoryCard .cat-desc {
+#categories .categoryCard .cat-desc {
     width: 100%;
     height: auto;
     position: absolute;
@@ -232,13 +210,9 @@ name-categories .categoryCard .cat-desc {
 }
 
 /*
- * Boys Categories
- */
-
-/*
  * Name list
  */
-name-list .container.name-list {
+#nameList {
     max-width: 500px;
 }
 
