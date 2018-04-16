@@ -9,9 +9,7 @@
         getNameCategories();
     
     else if (isset($_GET['request']) && $_GET['request'] === 'getNames')
-    {
         getNames();
-    }
     
     function getNames()
     {

@@ -22,6 +22,7 @@ function catCtrl($scope, $timeout, $routeParams, dataService, $log)
     $scope.submit = submit;
     $scope.mouseenter = mouseenter;
     $scope.mouseleave = mouseleave;
+    $scope.closeAlert = closeAlert;
 
     activate();
 
@@ -139,36 +140,25 @@ function catCtrl($scope, $timeout, $routeParams, dataService, $log)
 
     function displayAlert()
     {
-        if (!alertIsInDom())
+        if (!alertIsDisplayed())
         {
-            // alert is not in the dom
-            // append the alert node to the dom
-            // clone the newly appended alert node
-            let catAlert = document.querySelector('#categories-alert');
-            catAlert.appendChild(vm.alert);
-            vm.alert = null;
-            vm.alert = catAlert.children[0].cloneNode(true);
-            // vm.alert = catAlert.childList;
-        }
-        else if (alertIsInDom() && !alertIsDisplayed())
-        {
-            // alert is in the dom
+            // alert is not displayed
             // display the alert
-            // clone the alert node
             let alert = document.querySelector('#categories-alert .alert');
             alert.classList.remove('d-none');
-            vm.alert = alert.cloneNode(true);
+            $timeout(function() {
+                alert.classList.add('show-alert');
+            }, 75);
         }
     }
 
     function closeAlert()
     {
-        $('#categories-alert .alert').alert('close');
-    }
-
-    function alertIsInDom()
-    {
-        return document.querySelector('#categories-alert .alert');
+        let alert = document.querySelector('#categories-alert .alert');
+        alert.classList.remove('show-alert');
+        $timeout(function() {
+            alert.classList.add('d-none');
+        }, 200);
     }
 
     function alertIsDisplayed()

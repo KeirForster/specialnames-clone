@@ -273,6 +273,19 @@ body {
     max-width: 992px;
 }
 
+#categories-alert .alert {
+    -ms-transform: scale(0); /* IE 9 */
+    -webkit-transform: scale(0); /* Safari 3-8 */
+    transform: scale(0);
+    transition: transform 0.2s ease;
+}
+
+#categories-alert .alert.show-alert {
+    -ms-transform: scale(1); /* IE 9 */
+    -webkit-transform: scale(1); /* Safari 3-8 */
+    transform: scale(1);
+}
+
 /*
  * Name list
  */
