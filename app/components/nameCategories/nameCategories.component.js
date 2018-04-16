@@ -12,7 +12,6 @@ function catCtrl($scope, $timeout, $routeParams, dataService, $log)
 {
     var vm = this;
     vm.gender = $routeParams.gender;
-    vm.alert = null;
     $scope.categories = [];
     $scope.selectedCatNames = [];
     $scope.selectedCatsIsFull = false;
