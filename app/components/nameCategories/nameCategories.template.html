@@ -1,54 +1,43 @@
-<!-- Selected Categories -->
-<div id="categories-selected">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-xs-2">
-                <h2 class="jumbotron-heading text-white text-center no-select m-2">Categories Selected:</h2>
-            </div>
-            <div class="category-selected col-xs-2 bg-info rounded m-2 p-2 text-white"
-                 ng-repeat="catSel in selectedCategories">
-                <h5 class="d-inline-block m-0 pr-2">{{ catSel }}</h5>
-                <button type="button" class="close" aria-label="Close" ng-click="toggleSelCat(catSel)">
-                    <i aria-hidden="true">&times;</i>
-                </button>
-            </div>
-        </div>
+<!-- Alert -->
+<div id="categories-alert" class="container pt-2">
+    <div class="alert alert-warning fade show d-none" role="alert">
+        <div class="icon d-inline-block"><i class="fas fa-exclamation-triangle"></i></div>
+        <strong>Maximum traits reached!</strong> You can only select up to 5 traits. You must deselect a trait before
+        adding another.
+        <button type="button" class="close" aria-label="Close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
 </div>
 
 <!-- Categories -->
-<div id="categories" class="bg-info">
+<div id="categories" class="pt-4" ng-click="testClick()">
     <div class="container">
         <!-- Top row -->
         <div class="row">
-            <div class="categoryCard col-sm-3 no-select" ng-repeat="category in catCtrl.catFirstHalf"
-                 ng-style="category.style">
-                <div class="cat-img-outer" ng-click="toggleCategory(category)"
-                     ng-mouseenter="toggleMouseEnter(category)" ng-mouseleave="toggleMouseLeave(category)">
-                    <img class="cat-img" ng-src="{{ category.imgSrc }}">
+            <div id="cat-{{ cat.cat_name }}" class="cat-card col-6 col-sm-4 col-md-3 col-lg-2 no-select pb-4"
+                 ng-class="catCardClass" ng-repeat="cat in categories" ng-mouseenter="mouseenter(cat)"
+                 ng-mouseleave="mouseleave(cat)">
+                <img class="cat-img img-fluid" ng-src="{{ cat.img_path }}">
+                <h4 class="cat-desc text-center font-weight-light text-white">{{ cat.cat_name }}</h4>
+                <div class="cat-img-overlay position-absolute" ng-click="toggleCat(cat)">
+                    <div class="icon">
+                        <i class="fas fa-plus-circle"></i>
+                    </div>
                 </div>
-                <h5 class="cat-desc">{{ category.name }}</h5>
-            </div>
-        </div>
-        <!-- Bottom row -->
-        <div class="row">
-            <div class="categoryCard col-sm-3 no-select" ng-repeat="category in catCtrl.catSecondHalf"
-                 ng-style="category.style">
-                <div class="cat-img-outer" ng-click="toggleCategory(category)"
-                     ng-mouseenter="toggleMouseEnter(category)" ng-mouseleave="toggleMouseLeave(category)">
-                    <img class="cat-img" ng-src="{{ category.imgSrc }}">
-                </div>
-                <h5 class="cat-desc">{{ category.name }}</h5>
             </div>
         </div>
     </div>
 </div>
 
 <!-- Submit button -->
-<div class="container" ng-class="submitStyle">
+<div id="categories-submit" class="container" ng-show="selectedCatsIsFull">
     <div class="row">
-        <div class="col-sm-3 m-2 p-2 mx-auto">
-            <a role="button" href="#!/{{ catCtrl.gender }}/categories/submit" class="btn btn-danger btn-lg btn-block">Submit</a>
+        <div class="col-4 m-2 p-2 mx-auto">
+            <a role="button" href="#!/{{ catCtrl.gender }}/categories/submit"
+               class="btn btn-lg btn-block" ng-click="submit()" ng-class="btnClass">
+                <i class="fas fa-sign-in-alt"></i>
+                Submit</a>
         </div>
     </div>
 </div>

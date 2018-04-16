@@ -1,2 +1,4 @@
 angular
-    .module('app.categoryTitle', []);
+    .module('app.categoryTitle', [
+        'ngRoute'
+    ]);

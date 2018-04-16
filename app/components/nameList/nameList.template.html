@@ -1,4 +1,4 @@
-<div id="nameList" class="container mt-5">
+<div id="nameList" class="container mt-5" ng-class="listClass">
     <ul class="list-group">
         <li class="list-group-item list-group-item-info">Gabriel</li>
         <li class="list-group-item list-group-item-light">Axel</li>
@@ -11,4 +11,8 @@
         <li class="list-group-item list-group-item-info">Lucius</li>
         <li class="list-group-item list-group-item-light">Aden</li>
     </ul>
+</div>
+<div class="spinner mx-auto" ng-show="loadingData" ng-click="clicktest()">
+    <div class="cube1"></div>
+    <div class="cube2"></div>
 </div>

@@ -8,7 +8,8 @@ function dataService($http, $q, $log)
 {
     return {
         // getNames: getNames,
-        getNameCategories: getNameCategories
+        getNameCategories: getNameCategories,
+        selectedCategories: []
     };
 
     function getNames()
@@ -35,106 +36,24 @@ function dataService($http, $q, $log)
 
     function getNameCategories()
     {
-        var deferred = $q.defer();
-        var categories = [
-            { name: 'elegant',
-                style: {},
-                imgSrc: 'app/assets/img/sporty_black.png',
-                images: {
-                    normal: 'app/assets/img/sporty_black.png',
-                    toggle: 'app/assets/img/sporty_white.png'
-                }
-            },
-            { name: 'sporty',
-                style: {},
-                imgSrc: 'app/assets/img/sporty_black.png',
-                images: {
-                    normal: 'app/assets/img/sporty_black.png',
-                    toggle: 'app/assets/img/sporty_white.png'
-                }
-            },
-            { name: 'insensitive',
-                style: {},
-                imgSrc: 'app/assets/img/sporty_black.png',
-                images: {
-                    normal: 'app/assets/img/sporty_black.png',
-                    toggle: 'app/assets/img/sporty_white.png'
-                }
-            },
-            { name: 'insistent',
-                style: {},
-                imgSrc: 'app/assets/img/sporty_black.png',
-                images: {
-                    normal: 'app/assets/img/sporty_black.png',
-                    toggle: 'app/assets/img/sporty_white.png'
-                }
-            },
-            { name: 'confident',
-                style: {},
-                imgSrc: 'app/assets/img/sporty_black.png',
-                images: {
-                    normal: 'app/assets/img/sporty_black.png',
-                    toggle: 'app/assets/img/sporty_white.png'
-                }
-            },
-            { name: 'honest',
-                style: {},
-                imgSrc: 'app/assets/img/sporty_black.png',
-                images: {
-                    normal: 'app/assets/img/sporty_black.png',
-                    toggle: 'app/assets/img/sporty_white.png'
-                }
-            },
-            { name: 'clever',
-                style: {},
-                imgSrc: 'app/assets/img/sporty_black.png',
-                images: {
-                    normal: 'app/assets/img/sporty_black.png',
-                    toggle: 'app/assets/img/sporty_white.png'
-                }
-            },
-            { name: 'creative',
-                style: {},
-                imgSrc: 'app/assets/img/sporty_black.png',
-                images: {
-                    normal: 'app/assets/img/sporty_black.png',
-                    toggle: 'app/assets/img/sporty_white.png'
-                }
-            },
-            { name: 'optimistic',
-                style: {},
-                imgSrc: 'app/assets/img/sporty_black.png',
-                images: {
-                    normal: 'app/assets/img/sporty_black.png',
-                    toggle: 'app/assets/img/sporty_white.png'
-                }
-            },
-            { name: 'reliable',
-                style: {},
-                imgSrc: 'app/assets/img/sporty_black.png',
-                images: {
-                    normal: 'app/assets/img/sporty_black.png',
-                    toggle: 'app/assets/img/sporty_white.png'
-                }
-            },
-            { name: 'keen',
-                style: {},
-                imgSrc: 'app/assets/img/sporty_black.png',
-                images: {
-                    normal: 'app/assets/img/sporty_black.png',
-                    toggle: 'app/assets/img/sporty_white.png'
-                }
-            },
-            { name: 'have empathy',
-                style: {},
-                imgSrc: 'app/assets/img/sporty_black.png',
-                images: {
-                    normal: 'app/assets/img/sporty_black.png',
-                    toggle: 'app/assets/img/sporty_white.png'
-                }
+        return $http.get('app/db/dataService.php')
+            .then(getNameCatsComplete)
+            .catch(getNameCatsFailed);
+
+        function getNameCatsComplete(response)
+        {
+            return response.data;
+        }
+
+        function getNameCatsFailed(error) {
+            var newMessage = 'XHR Failed for getNameCategories';
+            if (error.data && error.data.description)
+            {
+                newMessage = newMessage + '\n' + error.data.description;
+                error.data.description = newMessage;
             }
-        ];
-        deferred.resolve(categories);
-        return deferred.promise;
+            $log.error(newMessage);
+            return $q.reject(error);
+        }
     }
 }

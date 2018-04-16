@@ -2,90 +2,178 @@ angular
     .module('app.nameCategories')
     .component('nameCategories', {
         templateUrl: 'app/components/nameCategories/nameCategories.template.html',
-        controller: nameCategoriesCtrl,
+        controller: catCtrl,
         controllerAs: 'catCtrl'
     });
 
-nameCategoriesCtrl.$inject = ['$scope', '$routeParams', 'dataService', '$log'];
+catCtrl.$inject = ['$scope', '$timeout', '$routeParams', 'dataService', '$log'];
 
-function nameCategoriesCtrl($scope, $routeParams, dataService, $log)
+function catCtrl($scope, $timeout, $routeParams, dataService, $log)
 {
     var vm = this;
     vm.gender = $routeParams.gender;
-    vm.categories = [];
-    vm.catFirstHalf = [];
-    vm.catSecondHalf = [];
-    $scope.selectedCategories = [];
-    $scope.selectionFull = false;
-    $scope.toggleCategory = toggleCategory;
-    $scope.toggleMouseEnter = toggleMouseEnter;
-    $scope.toggleMouseLeave = toggleMouseLeave;
-    $scope.toggleSelCat = toggleSelCat;
-    $scope.submitStyle = { hidden: true };
+    vm.alert = null;
+    $scope.categories = [];
+    $scope.selectedCatNames = [];
+    $scope.selectedCatsIsFull = false;
+    $scope.btnClass = 'btn-' + vm.gender;
+    $scope.catCardClass = null;
+    $scope.toggleCat = toggleCat;
+    $scope.submit = submit;
+    $scope.mouseenter = mouseenter;
+    $scope.mouseleave = mouseleave;
 
     activate();
 
     function activate()
     {
-        return dataService.getNameCategories()
+        dataService.getNameCategories()
             .then(function(data)
             {
-                vm.categories = data;
-                vm.catFirstHalf = vm.categories.slice(0, vm.categories.length / 2);
-                vm.catSecondHalf = vm.categories.slice(vm.categories.length / 2, vm.categories.length);
+                data.forEach(function(cat)
+                {
+                    cat.img_path = 'app/assets/img/' + cat.cat_img + '.png';
+                });
+                $scope.categories = data;
+                $timeout(function()
+                {
+                    $scope.catCardClass = 'show';
+                }, 100);
             });
     }
 
-    function toggleSelCat(catSelName)
+    function submit()
     {
-        vm.categories.forEach(function(cat) {
-            if (cat.name === catSelName)
-            {
-                toggleCategory(cat);
-                return false;
-            }
-        });
+        dataService.selectedCategories = $scope.selectedCatNames;
     }
 
-    function toggleCategory(cat)
+    function mouseenter(cat)
     {
-        if (!$scope.selectedCategories.includes(cat.name) && $scope.selectedCategories.length < 5)
+        if (catIsSelected(cat))
+            toggleCatImgOverlayIcon(cat, 'fa-times-circle');
+    }
+
+    function mouseleave(cat)
+    {
+        if (catIsSelected(cat))
+            toggleCatImgOverlayIcon(cat, 'fa-check-circle');
+    }
+
+    function toggleCat(cat)
+    {
+        if ($scope.selectedCatsIsFull && !catIsSelected(cat))
         {
+            // the selected categories list is full and cat is clicked
+            // show the alert message
+            displayAlert();
+        }
+
+        else if (!catIsSelected(cat))
+        {
+            // category is not in the list
             // add the category to the selected list
-            $scope.selectedCategories.push(cat.name);
-            cat.style['background-color'] = '#000';
-            cat.imgSrc = cat.images.toggle;
-            if ($scope.selectedCategories.length === 5)
-            {
-                $scope.submitStyle['hidden'] = false;
-            }
+            // change the overlay icon to checked
+            // show the overlay icon always
+            // darken the image
+            addCat(cat.cat_name);
+            toggleCatImgOverlayIcon(cat, 'fa-check-circle');
+            toggleCatImgOverlayOpacity(cat);
+            toggleCatImageFilter(cat);
         }
 
-        else if ($scope.selectedCategories.includes(cat.name))
+        else
         {
+            // category is already in the list
             // remove the category from the selected list
-            $scope.selectedCategories.splice($scope.selectedCategories.indexOf(cat.name), 1);
-            cat.style['background-color'] = '#fff';
-            cat.imgSrc = cat.images.normal;
-            $scope.submitStyle['hidden'] = true;
+            // change the overlay icon to plus
+            // show the overlay icon only on hover
+            // toggle the image brightness
+            removeCat(cat.cat_name);
+            toggleCatImgOverlayIcon(cat, 'fa-plus-circle');
+            toggleCatImgOverlayOpacity(cat);
+            toggleCatImageFilter(cat);
         }
     }
 
-    function toggleMouseEnter(cat)
+    function catIsSelected(cat)
     {
-        if (cat.imgSrc !== cat.images.toggle)
+        return $scope.selectedCatNames.includes(cat.cat_name);
+    }
+
+    function addCat(catName)
+    {
+        $scope.selectedCatNames.push(catName);
+        if ($scope.selectedCatNames.length === 5)
+            $scope.selectedCatsIsFull = true;
+    }
+
+    function removeCat(catName)
+    {
+        if (alertIsDisplayed())
+            closeAlert();
+        $scope.selectedCatNames.splice($scope.selectedCatNames.indexOf(catName), 1);
+        $scope.selectedCatsIsFull = false;
+    }
+
+    function toggleCatImageFilter(cat)
+    {
+        let catImg = document.querySelector('#cat-' + cat.cat_name + ' img');
+        catImg.classList.toggle('img-dark');
+    }
+
+    function toggleCatImgOverlayIcon(cat, iconClass)
+    {
+        let catIcon = document.querySelector('#cat-' + cat.cat_name + ' .cat-img-overlay .icon');
+        catIcon.removeChild(catIcon.children[0]);
+        let iconChild = document.createElement('i');
+        iconChild.classList.add('fas');
+        iconChild.classList.add(iconClass);
+        catIcon.appendChild(iconChild);
+    }
+
+    function toggleCatImgOverlayOpacity(cat)
+    {
+        let catImgOverlay = document.querySelector('#cat-' + cat.cat_name + ' .cat-img-overlay');
+        catImgOverlay.classList.toggle('show-icon');
+    }
+
+    function displayAlert()
+    {
+        if (!alertIsInDom())
         {
-            cat.style['background-color'] = '#000';
-            cat.imgSrc = cat.images.toggle;
+            // alert is not in the dom
+            // append the alert node to the dom
+            // clone the newly appended alert node
+            let catAlert = document.querySelector('#categories-alert');
+            catAlert.appendChild(vm.alert);
+            vm.alert = null;
+            vm.alert = catAlert.children[0].cloneNode(true);
+            // vm.alert = catAlert.childList;
+        }
+        else if (alertIsInDom() && !alertIsDisplayed())
+        {
+            // alert is in the dom
+            // display the alert
+            // clone the alert node
+            let alert = document.querySelector('#categories-alert .alert');
+            alert.classList.remove('d-none');
+            vm.alert = alert.cloneNode(true);
         }
     }
 
-    function toggleMouseLeave(cat)
+    function closeAlert()
     {
-        if (!$scope.selectedCategories.includes(cat.name))
-        {
-            cat.style['background-color'] = '#fff';
-            cat.imgSrc = cat.images.normal;
-        }
+        $('#categories-alert .alert').alert('close');
+    }
+
+    function alertIsInDom()
+    {
+        return document.querySelector('#categories-alert .alert');
+    }
+
+    function alertIsDisplayed()
+    {
+        let alert = document.querySelector('#categories-alert .alert');
+        return alert && !alert.classList.contains('d-none');
     }
 }
