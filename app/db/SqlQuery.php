@@ -5,7 +5,7 @@
         (
             'preparedStatement' => array
             (
-                'categories' => "SELECT * FROM categories WHERE type_id = ?"
+                'names' => "SELECT * FROM names WHERE meaning IN (?)"
             ),
             'categories' => "SELECT * FROM categories;"
         );

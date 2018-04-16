@@ -12,5 +12,5 @@ function catTitleCtrl($scope, $routeParams)
 {
     var vm = this;
     vm.gender = $routeParams.gender;
-    $scope.bgClass = [vm.gender + '-bg-color'];
+    $scope.bgClass = [vm.gender + '-title'];
 }

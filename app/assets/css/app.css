@@ -151,7 +151,11 @@ body {
  * Categories Title
  */
 .jumbotron.boys-title {
-    background-color: rgba(240, 248, 255, 0.9);
+    background-color: rgba(141, 226, 244, 0.5);
+}
+
+.jumbotron.girls-title {
+    background-color: rgba(255, 81, 124, 0.5);
 }
 
 /*
@@ -263,7 +267,7 @@ body {
 }
 
 /*
- * Categoriy Alert
+ * Category Alert
  */
 #categories-alert {
     max-width: 992px;

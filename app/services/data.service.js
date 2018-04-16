@@ -7,14 +7,19 @@ dataService.$inject = ['$http', '$q', '$log'];
 function dataService($http, $q, $log)
 {
     return {
-        // getNames: getNames,
+        getNames: getNames,
         getNameCategories: getNameCategories,
         selectedCategories: []
     };
 
     function getNames()
     {
-        return $http.get('db/getNames.php')
+        return $http.get('app/db/dataService.php', {
+            params: {
+                request: 'getNames',
+                catNames: dataService.selectedCategories
+            }
+            })
             .then(getNamesComplete)
             .catch(getNamesFailed);
 
@@ -25,10 +30,11 @@ function dataService($http, $q, $log)
 
         function getNamesFailed(error) {
             var newMessage = 'XHR Failed for getNames';
-            if (error.data && error.data.description) {
+            if (error.data && error.data.description)
+            {
                 newMessage = newMessage + '\n' + error.data.description;
+                error.data.description = newMessage;
             }
-            error.data.description = newMessage;
             $log.error(newMessage);
             return $q.reject(error);
         }
@@ -36,7 +42,7 @@ function dataService($http, $q, $log)
 
     function getNameCategories()
     {
-        return $http.get('app/db/dataService.php')
+        return $http.get('app/db/dataService.php', { params: { request: 'getNameCategories' } })
             .then(getNameCatsComplete)
             .catch(getNameCatsFailed);
 
