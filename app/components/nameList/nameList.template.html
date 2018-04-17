@@ -1,18 +1,24 @@
-<div id="nameList" class="container mt-5" ng-class="listClass">
-    <ul class="list-group">
-        <li class="list-group-item list-group-item-info">Gabriel</li>
-        <li class="list-group-item list-group-item-light">Axel</li>
-        <li class="list-group-item list-group-item-info">Hayden</li>
-        <li class="list-group-item list-group-item-light">Kade</li>
-        <li class="list-group-item list-group-item-info">Blaze</li>
-        <li class="list-group-item list-group-item-light">Tiger</li>
-        <li class="list-group-item list-group-item-info">Michael</li>
-        <li class="list-group-item list-group-item-light">Willie</li>
-        <li class="list-group-item list-group-item-info">Lucius</li>
-        <li class="list-group-item list-group-item-light">Aden</li>
-    </ul>
+<!-- Name list -->
+<div id="nameList" class="container my-5" ng-class="listClass">
+    <div class="list-group">
+        <div class="list-group-item list-group-item-action flex-column align-items-start"
+             ng-repeat="name in nameList | orderBy: 'name_value'" ng-class-odd="listItemOddClass"
+             ng-class-even="listItemEvenClass">
+            <div class="d-flex flex-row w-100 justify-content-between">
+                <div class="d-flex flex-column">
+                    <h5 class="mb-1 text-capitalize">{{ name.name_value }}</h5>
+                    <p class="mb-1 text-capitalize no-select">{{ name.cat_name }}</small>
+                </div>
+                <div class="d-flex flex-column name-list-img-container no-select">
+                    <img class="img-fluid" ng-src="{{ name.img_path }}" alt="category image">
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<div class="spinner mx-auto" ng-show="loadingData" ng-click="clicktest()">
+
+<!-- loader -->
+<div class="spinner mx-auto" ng-show="loadingData">
     <div class="cube1"></div>
     <div class="cube2"></div>
 </div>

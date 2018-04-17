@@ -6,18 +6,33 @@ dataService.$inject = ['$http', '$q', '$log'];
 
 function dataService($http, $q, $log)
 {
+    let selectedGender = null;
+    let selectedCategories = null;
+
     return {
         getNames: getNames,
         getNameCategories: getNameCategories,
-        selectedCategories: []
+        setSelectedGender: setSelectedGender,
+        setSelectedCategories: setSelectedCategories
     };
+
+    function setSelectedGender(gender)
+    {
+        selectedGender = gender;
+    }
+
+    function setSelectedCategories(selCategories)
+    {
+        selectedCategories = selCategories;
+    }
 
     function getNames()
     {
         return $http.get('app/db/dataService.php', {
             params: {
                 request: 'getNames',
-                catNames: dataService.selectedCategories
+                catNames: selectedCategories.toString(),
+                gender: selectedGender
             }
             })
             .then(getNamesComplete)

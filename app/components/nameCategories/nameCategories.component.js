@@ -14,10 +14,11 @@ function catCtrl($scope, $timeout, $routeParams, dataService, $log)
     vm.gender = $routeParams.gender;
     vm.imgSrcBase = 'app/assets/img/';
     vm.imgExt = '.png';
+    vm.selectedCatsIsFull = false;
+
     $scope.categories = [];
     $scope.selectedCatNames = [];
-    $scope.selectedCatsIsFull = false;
-    $scope.btnClass = 'btn-' + vm.gender;
+    $scope.btnClass = ['btn-' + vm.gender];
     $scope.catCardClass = null;
     $scope.toggleCat = toggleCat;
     $scope.submit = submit;
@@ -56,7 +57,8 @@ function catCtrl($scope, $timeout, $routeParams, dataService, $log)
 
     function submit()
     {
-        dataService.selectedCategories = $scope.selectedCatNames;
+        dataService.setSelectedGender(vm.gender === 'boys' ? 'male' : 'female');
+        dataService.setSelectedCategories($scope.selectedCatNames);
     }
 
     function mouseenter(cat)
@@ -73,7 +75,7 @@ function catCtrl($scope, $timeout, $routeParams, dataService, $log)
 
     function toggleCat(cat)
     {
-        if ($scope.selectedCatsIsFull && !catIsSelected(cat))
+        if (vm.selectedCatsIsFull && !catIsSelected(cat))
         {
             // the selected categories list is full and cat is clicked
             // show the alert message
@@ -116,7 +118,10 @@ function catCtrl($scope, $timeout, $routeParams, dataService, $log)
     {
         $scope.selectedCatNames.push(catName);
         if ($scope.selectedCatNames.length === 5)
-            $scope.selectedCatsIsFull = true;
+        {
+            vm.selectedCatsIsFull = true;
+            $scope.btnClass[1] = 'show';
+        }
     }
 
     function removeCat(catName)
@@ -124,7 +129,8 @@ function catCtrl($scope, $timeout, $routeParams, dataService, $log)
         if (alertIsDisplayed())
             closeAlert();
         $scope.selectedCatNames.splice($scope.selectedCatNames.indexOf(catName), 1);
-        $scope.selectedCatsIsFull = false;
+        vm.selectedCatsIsFull = false;
+        $scope.btnClass.splice(1, 1);
     }
 
     function toggleCatImageFilter(cat)

@@ -13,7 +13,7 @@ body {
     background-image: url("../img/baby_wild.jpg");
     background-position: center;
     background-size: cover;
-    background-repeat: no-repeat;
+    background-repeat: repeat-y;
 }
 
 @media (min-width: 768px) {
@@ -235,6 +235,10 @@ body {
     color: white;
     background-color: #8de2f4;
     border-color: #8de2f4;
+    -ms-transform: scale(0); /* IE 9 */
+    -webkit-transform: scale(0); /* Safari 3-8 */
+    transform: scale(0);
+    transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .btn-boys:hover {
@@ -247,12 +251,23 @@ body {
     color: white;
     background-color: #ff517c;
     border-color: #ff517c;
+    -ms-transform: scale(0); /* IE 9 */
+    -webkit-transform: scale(0); /* Safari 3-8 */
+    transform: scale(0);
+    transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .btn-girls:hover {
     color: white;
     background-color: #cc0033;
     border-color: #cc0033;
+}
+
+.btn-boys.show,
+.btn-girls.show {
+    -ms-transform: scale(1); /* IE 9 */
+    -webkit-transform: scale(1); /* Safari 3-8 */
+    transform: scale(1);
 }
 
 /*
@@ -290,6 +305,34 @@ body {
     -ms-transform: scale(1); /* IE 9 */
     -webkit-transform: scale(1); /* Safari 3-8 */
     transform: scale(1);
+}
+
+#nameList .name-list-img-container {
+    width: 13%;
+}
+
+#nameList .boys-list-item {
+    color: white;
+    background-color: rgba(141, 226, 244, 0.9);
+}
+
+#nameList .boys-list-item:hover {
+    color: white;
+    background-color: rgba(69, 209, 237, 0.9);
+}
+
+#nameList .girls-list-item {
+    color: white;
+    background-color: rgba(255, 81, 124, 0.9);
+}
+
+#nameList .girls-list-item:hover {
+    color: white;
+    background-color: rgba(255, 0, 64, 0.9);
+}
+
+#nameList .list-item-even {
+    background-color: rgba(255, 255, 255, 0.9);
 }
 
 /*

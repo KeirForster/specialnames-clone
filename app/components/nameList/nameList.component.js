@@ -11,15 +11,15 @@ nameListCtrl.$inject = ['$scope', '$timeout', '$routeParams', 'dataService', '$l
 function nameListCtrl($scope, $timeout, $routeParams, dataService, $log)
 {
     let vm = this;
-    $scope.loaderClass = $routeParams.gender + '-cube-bg-color';
+    vm.gender = $routeParams.gender;
+    vm.imgSrcBase = 'app/assets/img/';
+    vm.imgExt = '.png';
+    $scope.loaderClass = vm.gender + '-cube-bg-color';
     $scope.loadingData = true;
     $scope.listClass = null;
+    $scope.listItemOddClass = null;
+    $scope.listItemEvenClass = 'list-item-even';
     $scope.nameList = [];
-
-    $scope.clicktest = function() {
-        $scope.loadingData = false;
-        $scope.listClass = 'show';
-    };
 
     activate();
 
@@ -28,12 +28,27 @@ function nameListCtrl($scope, $timeout, $routeParams, dataService, $log)
         dataService.getNames()
             .then(function(data)
             {
+                addCatImgPaths(data);
                 $scope.nameList = data;
-                $timeout(function()
-                {
-                    $scope.loadingData = false;
-                    $scope.listClass = 'show';
-                }, 100);
+                $scope.listItemOddClass = vm.gender + '-list-item';
+                showList();
             });
+    }
+
+    function addCatImgPaths(data)
+    {
+        data.forEach(function(cat)
+        {
+            cat.img_path = vm.imgSrcBase + cat.cat_img + vm.imgExt;
+        });
+    }
+
+    function showList()
+    {
+        $timeout(function()
+        {
+            $scope.loadingData = false;
+            $scope.listClass = 'show';
+        }, 100);
     }
 }
