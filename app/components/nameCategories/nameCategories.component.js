@@ -10,8 +10,10 @@ catCtrl.$inject = ['$scope', '$timeout', '$routeParams', 'dataService', '$log'];
 
 function catCtrl($scope, $timeout, $routeParams, dataService, $log)
 {
-    var vm = this;
+    let vm = this;
     vm.gender = $routeParams.gender;
+    vm.imgSrcBase = 'app/assets/img/';
+    vm.imgExt = '.png';
     $scope.categories = [];
     $scope.selectedCatNames = [];
     $scope.selectedCatsIsFull = false;
@@ -30,16 +32,26 @@ function catCtrl($scope, $timeout, $routeParams, dataService, $log)
         dataService.getNameCategories()
             .then(function(data)
             {
-                data.forEach(function(cat)
-                {
-                    cat.img_path = 'app/assets/img/' + cat.cat_img + '.png';
-                });
+                addCatImgPaths(data);
                 $scope.categories = data;
-                $timeout(function()
-                {
-                    $scope.catCardClass = 'show';
-                }, 100);
+                showCatCards();
             });
+    }
+
+    function addCatImgPaths(data)
+    {
+        data.forEach(function(cat)
+        {
+            cat.img_path = vm.imgSrcBase + cat.cat_img + vm.imgExt;
+        });
+    }
+
+    function showCatCards()
+    {
+        $timeout(function()
+        {
+            $scope.catCardClass = 'show';
+        }, 100);
     }
 
     function submit()
@@ -50,13 +62,13 @@ function catCtrl($scope, $timeout, $routeParams, dataService, $log)
     function mouseenter(cat)
     {
         if (catIsSelected(cat))
-            toggleCatImgOverlayIcon(cat, 'fa-times-circle');
+            toggleCatImgOverlayIcon(cat, 'cancel');
     }
 
     function mouseleave(cat)
     {
         if (catIsSelected(cat))
-            toggleCatImgOverlayIcon(cat, 'fa-check-circle');
+            toggleCatImgOverlayIcon(cat, 'checked');
     }
 
     function toggleCat(cat)
@@ -76,7 +88,7 @@ function catCtrl($scope, $timeout, $routeParams, dataService, $log)
             // show the overlay icon always
             // darken the image
             addCat(cat.cat_name);
-            toggleCatImgOverlayIcon(cat, 'fa-check-circle');
+            toggleCatImgOverlayIcon(cat, 'checked');
             toggleCatImgOverlayOpacity(cat);
             toggleCatImageFilter(cat);
         }
@@ -89,7 +101,7 @@ function catCtrl($scope, $timeout, $routeParams, dataService, $log)
             // show the overlay icon only on hover
             // toggle the image brightness
             removeCat(cat.cat_name);
-            toggleCatImgOverlayIcon(cat, 'fa-plus-circle');
+            toggleCatImgOverlayIcon(cat, 'plus');
             toggleCatImgOverlayOpacity(cat);
             toggleCatImageFilter(cat);
         }
@@ -117,23 +129,19 @@ function catCtrl($scope, $timeout, $routeParams, dataService, $log)
 
     function toggleCatImageFilter(cat)
     {
-        let catImg = document.querySelector('#cat-' + cat.cat_name + ' img');
+        let catImg = document.querySelector('#cat-' + cat.cat_name + ' .img-container .cat-img');
         catImg.classList.toggle('img-dark');
     }
 
-    function toggleCatImgOverlayIcon(cat, iconClass)
+    function toggleCatImgOverlayIcon(cat, imgName)
     {
-        let catIcon = document.querySelector('#cat-' + cat.cat_name + ' .cat-img-overlay .icon');
-        catIcon.removeChild(catIcon.children[0]);
-        let iconChild = document.createElement('i');
-        iconChild.classList.add('fas');
-        iconChild.classList.add(iconClass);
-        catIcon.appendChild(iconChild);
+        let catImg = document.querySelector('#cat-' + cat.cat_name + ' .img-container .cat-img-overlay');
+        catImg.src = vm.imgSrcBase + imgName + vm.imgExt;
     }
 
     function toggleCatImgOverlayOpacity(cat)
     {
-        let catImgOverlay = document.querySelector('#cat-' + cat.cat_name + ' .cat-img-overlay');
+        let catImgOverlay = document.querySelector('#cat-' + cat.cat_name + ' .img-container .cat-img-overlay');
         catImgOverlay.classList.toggle('show-icon');
     }
 
