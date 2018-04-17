@@ -301,6 +301,16 @@ body {
     transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
+#nameList .list-group-item {
+    transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+#nameList .list-group-item:hover {
+    -ms-transform: scale(1.2); /* IE 9 */
+    -webkit-transform: scale(1.2); /* Safari 3-8 */
+    transform: scale(1.2);
+}
+
 #nameList.show {
     -ms-transform: scale(1); /* IE 9 */
     -webkit-transform: scale(1); /* Safari 3-8 */
