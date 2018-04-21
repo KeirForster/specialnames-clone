@@ -37,7 +37,7 @@ function catCtrl($scope, $timeout, $routeParams, dataService, $log)
                 addCatImgPaths(data);
                 $scope.categories = data;
                 showCatCards();
-            });
+            })
     }
 
     function addCatImgPaths(data)

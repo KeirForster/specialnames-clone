@@ -1,3 +1,25 @@
+<!-- Alert -->
+<div id="nameList-alert" class="container my-5 fade show d-none" ng-show="showAlert">
+    <div class="row justify-content-center">
+        <div class="col-10">
+            <div class="card alert-danger">
+                <div class="card-header">
+                    <div class="icon d-inline-block"><i class="fas fa-exclamation-circle"></i></div>
+                    <h5 class="d-inline">Oops!</h5>
+                </div>
+                <div class="card-body text-center">
+                    <h5>Something went wrong</h5>
+                    <p class="mb-2">Go back and try again</p>
+                </div>
+                <div class="card-footer border-top-0">
+                    <a type="button" class="btn btn-lg btn-block btn-danger"
+                       href="#!/{{ nameListCtrl.gender }}/categories">Go back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Name list -->
 <div id="nameList" class="container my-5" ng-class="listClass">
     <div class="list-group">

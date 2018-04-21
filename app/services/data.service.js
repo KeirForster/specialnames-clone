@@ -31,12 +31,12 @@ function dataService($http, $q, $log)
         return $http.get('app/db/dataService.php', {
             params: {
                 request: 'getNames',
-                catNames: selectedCategories.toString(),
+                catNames: selectedCategories ? selectedCategories.toString() : null,
                 gender: selectedGender
             }
-            })
-            .then(getNamesComplete)
-            .catch(getNamesFailed);
+        })
+        .then(getNamesComplete)
+        .catch(getNamesFailed);
 
         function getNamesComplete(response)
         {
@@ -50,7 +50,7 @@ function dataService($http, $q, $log)
                 newMessage = newMessage + '\n' + error.data.description;
                 error.data.description = newMessage;
             }
-            $log.error(newMessage);
+            // $log.error(newMessage);
             return $q.reject(error);
         }
     }
@@ -73,7 +73,7 @@ function dataService($http, $q, $log)
                 newMessage = newMessage + '\n' + error.data.description;
                 error.data.description = newMessage;
             }
-            $log.error(newMessage);
+            // $log.error(newMessage);
             return $q.reject(error);
         }
     }

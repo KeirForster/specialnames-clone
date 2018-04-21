@@ -349,6 +349,23 @@ body {
 }
 
 /*
+ * Name list Alert
+ */
+#nameList-alert {
+    max-width: 400px;
+    -ms-transform: scale(0); /* IE 9 */
+    -webkit-transform: scale(0); /* Safari 3-8 */
+    transform: scale(0);
+    transition: transform 0.2s ease;
+}
+
+#nameList-alert.show-alert {
+    -ms-transform: scale(1); /* IE 9 */
+    -webkit-transform: scale(1); /* Safari 3-8 */
+    transform: scale(1);
+}
+
+/*
  * CSS Spinner
  */
 .spinner {

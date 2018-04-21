@@ -14,6 +14,7 @@ function nameListCtrl($scope, $timeout, $routeParams, dataService, $log)
     vm.gender = $routeParams.gender;
     vm.imgSrcBase = 'app/assets/img/';
     vm.imgExt = '.png';
+    $scope.showAlert = false;
     $scope.loaderClass = vm.gender + '-cube-bg-color';
     $scope.loadingData = true;
     $scope.listClass = null;
@@ -32,6 +33,10 @@ function nameListCtrl($scope, $timeout, $routeParams, dataService, $log)
                 $scope.nameList = data;
                 $scope.listItemOddClass = vm.gender + '-list-item';
                 showList();
+            })
+            .catch(function(error)
+            {
+                showAlert();
             });
     }
 
@@ -41,6 +46,17 @@ function nameListCtrl($scope, $timeout, $routeParams, dataService, $log)
         {
             cat.img_path = vm.imgSrcBase + cat.cat_img + vm.imgExt;
         });
+    }
+
+    function showAlert()
+    {
+        $scope.loadingData = false;
+        $scope.showAlert = true;
+        let alert = document.querySelector('#nameList-alert');
+        alert.classList.remove('d-none');
+        $timeout(function() {
+            alert.classList.add('show-alert');
+        }, 75);
     }
 
     function showList()
