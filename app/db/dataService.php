@@ -16,11 +16,6 @@
         getNames();
     }
     
-    else
-    {
-        json_encode(array('else' => 'else value'));
-    }
-    
     function getNames()
     {
         $db         = new DbUtil();

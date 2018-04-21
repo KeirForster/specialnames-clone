@@ -46,27 +46,11 @@ body {
     max-width: 40rem;
 }
 
-.border-top {
-    border-top: 1px solid #e5e5e5;
-}
-
-.border-bottom {
-    border-bottom: 1px solid #e5e5e5;
-}
-
-.box-shadow {
-    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-}
-
 .no-select {
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
-}
-
-.close-icon {
-    cursor: pointer;
 }
 
 /*
@@ -96,30 +80,20 @@ body {
     transform: scale(1.2);
 }
 
-#card-container button:disabled {
-    cursor: pointer;
-}
-
 /*
  * Boy card
  */
 #boy-card {
-    border-color: dimgray;
+    border-color: #8de2f4;
     background-color: rgba(240, 248, 255, 0.9);
     box-shadow: 0 .25rem 0.75rem #007bff;
 }
 
 #boy-card .card-header {
-    border-bottom: none;
     background-color: #8de2f4;
 }
 
-#boy-card .card-footer {
-    border-top: none;
-}
-
 #boy-card .card-footer .btn {
-    color: white;
     background: #8de2f4;
     border-color: #8de2f4;
 }
@@ -128,22 +102,16 @@ body {
  * Girl card
  */
 #girl-card {
-    border-color: dimgray;
+    border-color: #ff517c;
     background-color: rgba(255, 228, 225, 0.9);
     box-shadow: 0 .25rem .75rem #ff0040;
 }
 
 #girl-card .card-header {
-    border-bottom: none;
     background-color: #ff517c;
 }
 
-#girl-card .card-footer {
-    border-top: none;
-}
-
 #girl-card .card-footer .btn {
-    color: white;
     background: #ff517c;
     border-color: #ff517c;
 }
@@ -182,11 +150,45 @@ body {
     transform: scale(1);
 }
 
-#categories .cat-card:hover {
+#categories .cat-card.show:hover {
     cursor: pointer;
     -ms-transform: scale(1.2); /* IE 9 */
     -webkit-transform: scale(1.2); /* Safari 3-8 */
     transform: scale(1.2);
+}
+
+#categories .cat-card .card-footer {
+    background-color: unset;
+}
+
+#categories .cat-card .card-footer .cat-desc {
+    font-size: medium;
+}
+
+/*
+ * Category boys card
+ */
+#categories .cat-card .boys-card {
+    background-color: rgba(240, 248, 255, 0.9);
+    border: 2px solid #8de2f4;
+    box-shadow: 0 .25rem 0.75rem deepskyblue;
+}
+
+#categories .cat-card .boys-card .card-footer .cat-desc {
+    background: #8de2f4;
+}
+
+/*
+ * Category girls card
+ */
+#categories .cat-card .girls-card {
+    background-color: rgba(255, 228, 225, 0.9);
+    border: 2px solid #ff517c;
+    box-shadow: 0 .25rem .75rem #ff0040;
+}
+
+#categories .cat-card .girls-card .card-footer .cat-desc {
+    background: #ff517c;
 }
 
 /*
@@ -232,43 +234,38 @@ body {
 /*
  * Category submit buttons
  */
-.btn-boys {
-    color: white;
-    background-color: #8de2f4;
-    border-color: #8de2f4;
+#categories-submit .btn {
     -ms-transform: scale(0); /* IE 9 */
     -webkit-transform: scale(0); /* Safari 3-8 */
     transform: scale(0);
     transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-.btn-boys:hover {
-    color: white;
+#categories-submit .btn-boys {
+    background-color: #8de2f4;
+    border-color: #8de2f4;
+}
+
+#categories-submit .btn-boys.show,
+#categories-submit .btn-girls.show {
+    -ms-transform: scale(1); /* IE 9 */
+    -webkit-transform: scale(1); /* Safari 3-8 */
+    transform: scale(1);
+}
+
+#categories-submit .btn-boys:hover {
     background-color: #129eba;
     border-color: #129eba;
 }
 
-.btn-girls {
-    color: white;
+#categories-submit .btn-girls {
     background-color: #ff517c;
     border-color: #ff517c;
-    -ms-transform: scale(0); /* IE 9 */
-    -webkit-transform: scale(0); /* Safari 3-8 */
-    transform: scale(0);
-    transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-.btn-girls:hover {
-    color: white;
+#categories-submit .btn-girls:hover {
     background-color: #cc0033;
     border-color: #cc0033;
-}
-
-.btn-boys.show,
-.btn-girls.show {
-    -ms-transform: scale(1); /* IE 9 */
-    -webkit-transform: scale(1); /* Safari 3-8 */
-    transform: scale(1);
 }
 
 /*

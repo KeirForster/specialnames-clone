@@ -16,6 +16,7 @@ function catCtrl($scope, $timeout, $routeParams, dataService, $log)
     vm.imgExt = '.png';
     vm.selectedCatsIsFull = false;
 
+    $scope.gender = vm.gender;
     $scope.categories = [];
     $scope.selectedCatNames = [];
     $scope.btnClass = ['btn-' + vm.gender];
