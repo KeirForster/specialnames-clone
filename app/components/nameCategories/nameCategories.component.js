@@ -21,6 +21,7 @@ function catCtrl($scope, $timeout, $routeParams, dataService, $log)
     $scope.selectedCatNames = [];
     $scope.btnClass = ['btn-' + vm.gender];
     $scope.catCardClass = null;
+    $scope.loadingData = true;
     $scope.toggleCat = toggleCat;
     $scope.submit = submit;
     $scope.mouseenter = mouseenter;
@@ -36,6 +37,7 @@ function catCtrl($scope, $timeout, $routeParams, dataService, $log)
             {
                 addCatImgPaths(data);
                 $scope.categories = data;
+                $scope.loadingData = false;
                 showCatCards();
                 configNavBackBtn();
             });

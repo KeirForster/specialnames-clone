@@ -34,6 +34,7 @@ function nameListCtrl($scope, $timeout, $routeParams, dataService, $log)
 
     function activate()
     {
+        configNavBackBtn();
         dataService.getNames()
         .then(function(data)
         {
