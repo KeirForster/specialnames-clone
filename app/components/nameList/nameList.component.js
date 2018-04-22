@@ -14,31 +14,42 @@ function nameListCtrl($scope, $timeout, $routeParams, dataService, $log)
     vm.gender = $routeParams.gender;
     vm.imgSrcBase = 'app/assets/img/';
     vm.imgExt = '.png';
+    vm.categories = null;
+    vm.isRefreshing = false;
+
     $scope.showAlert = false;
     $scope.loaderClass = vm.gender + '-cube-bg-color';
     $scope.loadingData = true;
     $scope.listClass = null;
     $scope.listItemOddClass = null;
     $scope.listItemEvenClass = 'list-item-even';
+    $scope.refreshClass = null;
     $scope.nameList = [];
+    $scope.refreshNameList = refreshNameList;
 
     activate();
 
     function activate()
     {
         dataService.getNames()
-            .then(function(data)
-            {
-                addCatImgPaths(data);
-                $scope.nameList = data;
-                $scope.listItemOddClass = vm.gender + '-list-item';
-                showList();
-                configNavBackBtn();
-            })
-            .catch(function(error)
-            {
-                showAlert();
-            });
+        .then(function(data)
+        {
+            // names
+            addCatImgPaths(data);
+            $scope.nameList = data;
+            $scope.listItemOddClass = vm.gender + '-list-item';
+            showList();
+            configNavBackBtn();
+            return dataService.getSelectedCategories();
+        })
+        .then(function(data) {
+            // selected categories
+            vm.categories = data;
+        })
+        .catch(function(error)
+        {
+            showAlert();
+        });
     }
 
     function addCatImgPaths(data)
@@ -67,6 +78,31 @@ function nameListCtrl($scope, $timeout, $routeParams, dataService, $log)
             $scope.loadingData = false;
             $scope.listClass = 'show';
         }, 100);
+    }
+
+    function refreshNameList()
+    {
+        if (!vm.isRefreshing)
+        {
+            vm.isRefreshing = true;
+            $scope.refreshClass = 'loading';
+            dataService.getNames()
+            .then(function(data)
+            {
+                // names
+                addCatImgPaths(data);
+                $scope.nameList = data;
+                $timeout(function()
+                {
+                    $scope.refreshClass = null;
+                    vm.isRefreshing = false;
+                }, 100);
+            })
+            .catch(function(error)
+            {
+                showAlert();
+            });
+        }
     }
 
     function configNavBackBtn()

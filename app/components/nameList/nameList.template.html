@@ -21,11 +21,12 @@
 </div>
 
 <!-- Name list -->
-<div id="nameList" class="container my-5" ng-class="listClass">
+<div id="nameList" class="container my-4" ng-class="listClass" ng-show="!showAlert">
+    <p class="btn btn-sm btn-warning text-white mb-0" ng-click="refreshNameList()">Refresh List</p>
     <div class="list-group">
         <div class="list-group-item list-group-item-action flex-column align-items-start"
              ng-repeat="name in nameList | orderBy: 'name_value'" ng-class-odd="listItemOddClass"
-             ng-class-even="listItemEvenClass">
+             ng-class-even="listItemEvenClass" ng-class="refreshClass">
             <div class="d-flex flex-row w-100 justify-content-between">
                 <div class="d-flex flex-column">
                     <h5 class="mb-1 text-capitalize">{{ name.name_value }}</h5>

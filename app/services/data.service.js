@@ -13,7 +13,9 @@ function dataService($http, $q, $log)
         getNames: getNames,
         getNameCategories: getNameCategories,
         setSelectedGender: setSelectedGender,
-        setSelectedCategories: setSelectedCategories
+        getSelectedGender: getSelectedGender,
+        setSelectedCategories: setSelectedCategories,
+        getSelectedCategories: getSelectedCategories
     };
 
     function setSelectedGender(gender)
@@ -21,9 +23,19 @@ function dataService($http, $q, $log)
         selectedGender = gender;
     }
 
+    function getSelectedGender()
+    {
+        return selectedGender ? $q.defer().resolve(selectedGender) : $q.reject('gender not set');
+    }
+
     function setSelectedCategories(selCategories)
     {
         selectedCategories = selCategories;
+    }
+
+    function getSelectedCategories()
+    {
+        return selectedCategories ? $q.resolve(selectedCategories) : $q.reject('categories not set');
     }
 
     function getNames()
