@@ -252,6 +252,7 @@ body {
 #categories-submit .btn-boys {
     background-color: #8de2f4;
     border-color: #8de2f4;
+    box-shadow: 0 .25rem 0.75rem #007bff;
 }
 
 #categories-submit .btn-boys.show,
@@ -267,13 +268,14 @@ body {
 }
 
 #categories-submit .btn-girls {
-    background-color: #ff517c;
-    border-color: #ff517c;
+    background-color: #de3cbb;
+    border-color: #de3cbb;
+    box-shadow: 0 .25rem .75rem #de3cbb;
 }
 
 #categories-submit .btn-girls:hover {
-    background-color: #cc0033;
-    border-color: #cc0033;
+    background-color: #ae1e8f;
+    border-color: #ae1e8f;
 }
 
 /*
