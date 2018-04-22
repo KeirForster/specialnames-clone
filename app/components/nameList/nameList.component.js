@@ -18,14 +18,17 @@ function nameListCtrl($scope, $timeout, $routeParams, dataService, $log)
     vm.isRefreshing = false;
 
     $scope.showAlert = false;
+    $scope.showRefreshAlert = false;
     $scope.loaderClass = vm.gender + '-cube-bg-color';
     $scope.loadingData = true;
     $scope.listClass = null;
     $scope.listItemOddClass = null;
     $scope.listItemEvenClass = 'list-item-even';
     $scope.refreshClass = null;
+    $scope.refreshBtnClass = null;
     $scope.nameList = [];
     $scope.refreshNameList = refreshNameList;
+    $scope.hideRefreshAlert = hideRefreshAlert;
 
     activate();
 
@@ -71,6 +74,23 @@ function nameListCtrl($scope, $timeout, $routeParams, dataService, $log)
         }, 75);
     }
 
+    function showRefreshAlert()
+    {
+        $scope.showRefreshAlert = true;
+        $timeout(function() {
+            document.querySelector('#refresh-alert .card-wrapper').classList.add('show-alert');
+        }, 75);
+    }
+
+    function hideRefreshAlert()
+    {
+        $scope.showRefreshAlert = false;
+        vm.isRefreshing = false;
+        $scope.refreshBtnClass = null;
+        $scope.refreshClass = null;
+        document.querySelector('#refresh-alert .card-wrapper').classList.remove('show-alert');
+    }
+
     function showList()
     {
         $timeout(function()
@@ -85,6 +105,7 @@ function nameListCtrl($scope, $timeout, $routeParams, dataService, $log)
         if (!vm.isRefreshing)
         {
             vm.isRefreshing = true;
+            $scope.refreshBtnClass = ['disabled', 'not-allowed'];
             $scope.refreshClass = 'loading';
             dataService.getNames()
             .then(function(data)
@@ -92,15 +113,23 @@ function nameListCtrl($scope, $timeout, $routeParams, dataService, $log)
                 // names
                 addCatImgPaths(data);
                 $scope.nameList = data;
+
+                // delay removing refresh class or it won't render
                 $timeout(function()
                 {
                     $scope.refreshClass = null;
-                    vm.isRefreshing = false;
                 }, 100);
+
+                // allow max 1 refresh per second
+                $timeout(function()
+                {
+                    vm.isRefreshing = false;
+                    $scope.refreshBtnClass = null;
+                }, 500)
             })
             .catch(function(error)
             {
-                showAlert();
+                showRefreshAlert();
             });
         }
     }

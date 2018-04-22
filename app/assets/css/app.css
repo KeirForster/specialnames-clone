@@ -53,6 +53,10 @@ body {
     user-select: none;
 }
 
+.not-allowed {
+    cursor: not-allowed;
+}
+
 /*
  * Top navbar
  */
@@ -374,6 +378,32 @@ body {
     -ms-transform: scale(1); /* IE 9 */
     -webkit-transform: scale(1); /* Safari 3-8 */
     transform: scale(1);
+}
+
+/*
+ * Name Refresh Alert
+ */
+#refresh-alert {
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /*transition: all 0.3s ease;*/
+}
+
+#refresh-alert .card-wrapper {
+    top: 50%;
+    left: 50%;
+    -ms-transform: scale(0); /* IE 9 */
+    -webkit-transform: scale(0); /* Safari 3-8 */
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.2s ease;
+}
+
+#refresh-alert .card-wrapper.show-alert {
+    -ms-transform: scale(1); /* IE 9 */
+    -webkit-transform: scale(1); /* Safari 3-8 */
+    transform: translate(-50%, -50%) scale(1);
 }
 
 /*
