@@ -11,10 +11,10 @@ html {
 body {
     height: 100%;
     margin: 0;
-    background-image: url("../img/baby_wild.jpg");
+    background-image: url("../img/babynames2.jpg");
     background-position: center;
-    background-size: cover;
-    background-repeat: repeat-y;
+    /*background-size: contain;*/
+    background-repeat: repeat;
 }
 
 @media (min-width: 768px) {
@@ -31,7 +31,7 @@ body {
     padding-top: var(--jumbotron-padding-y);
     padding-bottom: var(--jumbotron-padding-y);
     margin-bottom: 0;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(153, 255, 204, 0.95);
 }
 
 .jumbotron p:last-child {
@@ -61,7 +61,7 @@ body {
  * Top navbar
  */
 #top-navbar {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.85);
 }
 
 #top-navbar .navbar-back-btn {
@@ -110,18 +110,18 @@ body {
  * Girl card
  */
 #girl-card {
-    border-color: #ff517c;
-    background-color: rgba(255, 228, 225, 0.9);
-    box-shadow: 0 .25rem .75rem #ff0040;
+    border-color: #de3cbb;
+    background-color: rgba(249, 210, 240, 0.9);
+    box-shadow: 0 .25rem .75rem #de3cbb;
 }
 
 #girl-card .card-header {
-    background-color: #ff517c;
+    background-color: #de3cbb;
 }
 
 #girl-card .card-footer .btn {
-    background: #ff517c;
-    border-color: #ff517c;
+    background: #de3cbb;
+    border-color: #de3cbb;
 }
 
 /*
@@ -190,13 +190,13 @@ body {
  * Category girls card
  */
 #categories .cat-card .girls-card {
-    background-color: rgba(255, 228, 225, 0.9);
-    border: 2px solid #ff517c;
-    box-shadow: 0 .25rem .75rem #ff0040;
+    background-color: rgba(249, 210, 240, 0.9);
+    border: 2px solid #de3cbb;
+    box-shadow: 0 .25rem .75rem #de3cbb;
 }
 
 #categories .cat-card .girls-card .card-footer .cat-desc {
-    background: #ff517c;
+    background: #de3cbb;
 }
 
 /*
@@ -340,27 +340,23 @@ body {
 }
 
 #nameList .boys-list-item {
-    color: white;
-    background-color: rgba(141, 226, 244, 0.9);
+    background-color: rgba(141, 226, 244, 0.95);
 }
 
 #nameList .boys-list-item:hover {
-    color: white;
-    background-color: rgba(69, 209, 237, 0.9);
+    background-color: rgba(69, 209, 237, 0.95);
 }
 
 #nameList .girls-list-item {
-    color: white;
-    background-color: rgba(255, 81, 124, 0.9);
+    background-color: rgba(249, 210, 240, 0.95);
 }
 
 #nameList .girls-list-item:hover {
-    color: white;
-    background-color: rgba(255, 0, 64, 0.9);
+    background-color: rgba(240, 143, 217, 0.95);
 }
 
 #nameList .list-item-even {
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.95);
 }
 
 /*
@@ -418,7 +414,7 @@ body {
 }
 
 .cube1, .cube2 {
-    background-color: white;
+    background-color: rgba(153, 255, 204, 0.95);
     width: 15px;
     height: 15px;
     position: absolute;
