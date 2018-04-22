@@ -22,8 +22,10 @@
 
 <!-- Name list -->
 <div id="nameList" class="container my-4" ng-class="listClass" ng-show="!showAlert">
-    <p class="btn btn-sm btn-warning text-white mb-0" ng-click="refreshNameList()" ng-class="refreshBtnClass">Refresh
-        List</p>
+    <div class="btn btn-sm btn-dark text-white mb-2 font-italic" ng-click="refreshNameList()" ng-class="refreshBtnClass">
+        <div class="icon d-inline-block pr-1"><i class="fas fa-sync"></i></div>
+        Refresh List
+    </div>
     <div class="list-wrapper position-relative">
         <div class="list-group">
             <div class="list-group-item list-group-item-action flex-column align-items-start"
