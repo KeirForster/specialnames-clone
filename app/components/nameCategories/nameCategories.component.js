@@ -32,6 +32,7 @@ function catCtrl($scope, $timeout, $routeParams, dataService, $log)
 
     function activate()
     {
+        configNavBackBtn();
         dataService.getNameCategories()
             .then(function(data)
             {
@@ -39,7 +40,6 @@ function catCtrl($scope, $timeout, $routeParams, dataService, $log)
                 $scope.categories = data;
                 $scope.loadingData = false;
                 showCatCards();
-                configNavBackBtn();
             });
     }
 
