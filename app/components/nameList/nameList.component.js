@@ -33,6 +33,7 @@ function nameListCtrl($scope, $timeout, $routeParams, dataService, $log)
                 $scope.nameList = data;
                 $scope.listItemOddClass = vm.gender + '-list-item';
                 showList();
+                configNavBackBtn();
             })
             .catch(function(error)
             {
@@ -66,5 +67,12 @@ function nameListCtrl($scope, $timeout, $routeParams, dataService, $log)
             $scope.loadingData = false;
             $scope.listClass = 'show';
         }, 100);
+    }
+
+    function configNavBackBtn()
+    {
+        let navBackBtn = document.querySelector('#top-navbar .navbar-back-btn');
+        navBackBtn.classList.remove('d-none');
+        navBackBtn.href = '#!/' + vm.gender + '/categories';
     }
 }

@@ -18,7 +18,6 @@
 
 <body>
 <div class="wrapper" ng-app="app">
-    <app-nav></app-nav>
     <main>
         <section ng-view></section>
     </main>

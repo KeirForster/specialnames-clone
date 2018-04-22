@@ -37,7 +37,8 @@ function catCtrl($scope, $timeout, $routeParams, dataService, $log)
                 addCatImgPaths(data);
                 $scope.categories = data;
                 showCatCards();
-            })
+                configNavBackBtn();
+            });
     }
 
     function addCatImgPaths(data)
@@ -54,6 +55,13 @@ function catCtrl($scope, $timeout, $routeParams, dataService, $log)
         {
             $scope.catCardClass = 'show';
         }, 100);
+    }
+
+    function configNavBackBtn()
+    {
+        let navBackBtn = document.querySelector('#top-navbar .navbar-back-btn');
+        navBackBtn.classList.remove('d-none');
+        navBackBtn.href = '#';
     }
 
     function submit()

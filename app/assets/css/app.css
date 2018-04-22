@@ -60,6 +60,10 @@ body {
     background-color: rgba(0, 0, 0, 0.5);
 }
 
+#top-navbar .navbar-back-btn {
+    width: 10%;
+}
+
 /*
  * Main
  */
